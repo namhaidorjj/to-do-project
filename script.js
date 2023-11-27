@@ -1,8 +1,13 @@
-const addTuskButton = document.querySelectorAll(".add-task")
-console.log(addTuskButton)
-const addCard = document.querySelectorAll(".add-card")
-console.log(addCard)
-function unblock(){
-addTuskButton.style.display = (block)
+const addTaskButton = document.getElementById("add-taskk");
+const addCardButtons = document.getElementsByClassName("add-card");
+function unblock() {
+  addTaskButton.style.display = "flex";
 }
-addCard.addEventListner("click", unblock)
+for (let i = 0; i < addCardButtons.length; i++) {
+  addCardButtons[i].addEventListener("click", unblock);
+}
+const close = document.getElementById("closeButton");
+function closed() {
+  addTaskButton.style.display = "none";
+}
+close.addEventListener("click", closed);
