@@ -19,11 +19,10 @@
           <div class="board df">
             <div class="board-head df">
               <h1>To do</h1>
-
               <span>0</span>
             </div>
-            <div id="to-do">
-              <!-- <p>to do</p> -->
+            <div id="to-do" class="df">
+              <div id="cardHolder"></div>
             </div>
             <div class="add-card df">
               <i class="fa-solid fa-plus"></i>
@@ -72,7 +71,7 @@
       </div>
       <div>
         <p class="task-text">Description</p>
-        <input class="input2" type="text" />
+        <input class="input2" type="text" id="descrition" />
       </div>
       <div>
         <p class="task-text">Status</p>
@@ -86,9 +85,9 @@
       <div>
         <p class="task-text">Priority</p>
         <select name="" id="priority">
-          <option value="text">Low</option>
-          <option value="text">Medium</option>
-          <option value="text">High</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
         </select>
       </div>
       <div class="button" id="closeButton">Add Task</div>
