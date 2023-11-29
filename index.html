@@ -13,84 +13,86 @@
     ></script>
   </head>
   <body>
-    <div class="container df">
-      <div class="boards df">
-        <div class="df main">
-          <div class="board df">
-            <div class="board-head df">
-              <h1>To do</h1>
-              <span>0</span>
+    <div id="body">
+      <div class="container df">
+        <div class="boards df">
+          <div class="df main">
+            <div class="board df">
+              <div class="board-head df">
+                <h1>To do</h1>
+                <span>0</span>
+              </div>
+              <div id="to-do" class="df newwindowCSS"></div>
+              <div class="add-card df">
+                <i class="fa-solid fa-plus"></i>
+                <div>add card</div>
+              </div>
             </div>
-            <div id="to-do" class="df">
-              <div id="cardHolder"></div>
+            <div class="board df">
+              <div class="board-head df">
+                <h1>In progress</h1>
+                <span>0</span>
+              </div>
+              <div id="inProgress" class="df newwindowCSS"></div>
+              <div class="add-card df">
+                <i class="fa-solid fa-plus"></i>
+                <div>add card</div>
+              </div>
             </div>
-            <div class="add-card df">
-              <i class="fa-solid fa-plus"></i>
-              <div>add card</div>
+            <div class="board df">
+              <div class="board-head df">
+                <h1>Stuck</h1>
+                <span>0</span>
+              </div>
+              <div id="stuck" class="df newwindowCSS"></div>
+              <div class="add-card df">
+                <i class="fa-solid fa-plus"></i>
+                <div>add card</div>
+              </div>
             </div>
-          </div>
-          <div class="board df">
-            <div class="board-head df">
-              <h1>In progress</h1>
-              <span>0</span>
-            </div>
-            <div class="add-card df">
-              <i class="fa-solid fa-plus"></i>
-              <div>add card</div>
-            </div>
-          </div>
-          <div class="board df">
-            <div class="board-head df">
-              <h1>Stuck</h1>
-              <span>0</span>
-            </div>
-            <div class="add-card df">
-              <i class="fa-solid fa-plus"></i>
-              <div>add card</div>
-            </div>
-          </div>
-          <div class="board df">
-            <div class="board-head df">
-              <h1>Done</h1>
-              <span>0</span>
-            </div>
-
-            <div class="add-card df">
-              <i class="fa-solid fa-plus"></i>
-              <div>add card</div>
+            <div class="board df">
+              <div class="board-head df">
+                <h1>Done</h1>
+                <span>0</span>
+              </div>
+              <div id="done" class="df newwindowCSS"></div>
+              <div class="add-card df">
+                <i class="fa-solid fa-plus"></i>
+                <div>add card</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="add-task" id="add-taskk">
-      <div><p class="addtask">Add Task</p></div>
-      <div>
-        <p class="task-text">Title</p>
-        <input class="input1" type="text" id="title" />
+      <div class="add-task" id="add-taskk">
+        <div><p class="addtask">Add Task</p></div>
+        <div>
+          <p class="task-text">Title</p>
+          <input class="input1" type="text" id="title" />
+        </div>
+        <div>
+          <p class="task-text">Description</p>
+          <input class="input2" type="text" id="description" />
+        </div>
+        <div>
+          <p class="task-text">Status</p>
+          <select name="" id="status">
+            <option value="To Do">To Do</option>
+            <option value="inprogress">In progress</option>
+            <option value="stuck">Stuck</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div>
+          <p class="task-text">Priority</p>
+          <select name="" id="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div class="button" id="closeButton">Add Task</div>
       </div>
-      <div>
-        <p class="task-text">Description</p>
-        <input class="input2" type="text" id="descrition" />
-      </div>
-      <div>
-        <p class="task-text">Status</p>
-        <select name="" id="status">
-          <option value="todo">To Do</option>
-          <option value="inprogress">In progress</option>
-          <option value="stuck">Stuck</option>
-          <option value="done">Done</option>
-        </select>
-      </div>
-      <div>
-        <p class="task-text">Priority</p>
-        <select name="" id="priority">
-          <option value="Low">Low</option>
-          <option value="Medium">Medium</option>
-          <option value="High">High</option>
-        </select>
-      </div>
-      <div class="button" id="closeButton">Add Task</div>
     </div>
     <script src="script.js"></script>
     <script src="newTask.js"></script>

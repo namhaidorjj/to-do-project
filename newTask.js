@@ -1,9 +1,15 @@
 //add tusk hiih ued garch ireh tsonh-----------------------------------------------------------
 
 const ToDoWindow = document.getElementById("to-do");
+const inProgressWindow = document.getElementById("inProgress");
+const stuckWindow = document.getElementById("stuck");
+const doneWindow = document.getElementById("done");
 ToDoWindow.classList.add("to-do");
 function addedtusk() {
   ToDoWindow.style.display = "flex";
+
+  const bodybackground = document.getElementById("body");
+  bodybackground.classList.add("rgba");
 }
 for (let i = 0; i < addCardButtons.length; i++) {
   addCardButtons[i].addEventListener("click", addedtusk);
@@ -11,69 +17,117 @@ for (let i = 0; i < addCardButtons.length; i++) {
 
 //shineer hiiihdej bui window-----------------------------------------------------------
 
-const titleRef = document.getElementsByClassName("input1");
-const title = document.getElementById("title");
-const DesTitleRef = document.getElementsByClassName("input2");
-const descrip = document.getElementById("descrition");
+const titleRef = document.getElementById("title");
+const descriptionRef = document.getElementById("description");
 const statusRef = document.getElementById("status");
 const priority = document.getElementById("priority");
-const addTask = document.getElementById("closeButton");
 
+//shine render ----------------------------------------------------------------------------
+
+let state = {
+  tasks: [],
+};
+
+function addTask() {
+  const newTask = {
+    title: titleRef.value,
+    description: descriptionRef.value,
+    status: statusRef.value,
+    priority: priority.value,
+  };
+
+  state.tasks.push(newTask);
+  render();
+}
+
+function render() {
+  ToDoWindow.innerHTML = "";
+  inProgressWindow.innerHTML = "";
+  stuckWindow.innerHTML = "";
+  doneWindow.innerHTML = "";
+  for (let i = 0; i < state.tasks.length; i++) {
+    // const ToDoWindow = document.getElementById(state.tasks[i].status);
+    const card = document.createElement("div");
+    card.id = "cardHolder";
+
+    const start = document.createElement("div");
+    start.classList.add("start");
+    const middle = document.createElement("div");
+    middle.classList.add("middle");
+    const last = document.createElement("div");
+    last.classList.add("lastCSS");
+
+    // Start
+
+    const done = document.createElement("div");
+    done.innerHTML = `<i class="fas fa-check" aria-hidden="true"></i>`;
+    done.classList.add("done");
+    start.appendChild(done);
+
+    // Middle
+
+    const paragraph = document.createElement("h4");
+    const titlle = document.createElement("p");
+    const priorityref = document.createElement("option");
+
+    priorityref.classList.add("optionCss");
+
+    priorityref.textContent = state.tasks[i].priority;
+    paragraph.textContent = state.tasks[i].title;
+    titlle.textContent = state.tasks[i].description;
+
+    middle.appendChild(paragraph);
+    middle.appendChild(titlle);
+    middle.appendChild(priorityref);
+
+    // End
+
+    const deleteBtn = document.createElement("div");
+    deleteBtn.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+    deleteBtn.classList.add("deleteBtn");
+    last.appendChild(deleteBtn);
+
+    const editBtn = document.createElement("div");
+    editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
+    editBtn.classList.add("editBtn");
+    last.appendChild(editBtn);
+
+    card.appendChild(start);
+    card.appendChild(middle);
+    card.appendChild(last);
+
+    if (state.tasks[i].status === "To Do") {
+      ToDoWindow.appendChild(card);
+    }
+    if (state.tasks[i].status === "inprogress") {
+      inProgressWindow.appendChild(card);
+    }
+    if (state.tasks[i].status === "stuck") {
+      stuckWindow.appendChild(card);
+    }
+    if (state.tasks[i].status === "done") {
+      doneWindow.appendChild(card);
+    }
+
+    titleRef.value = "";
+    descriptionRef.value = "";
+  }
+
+  //Priority erembleh
+  const low = document.createElement("div");
+
+  const medium = document.createElement("div");
+
+  const high = document.createElement("div");
+}
 // shineer hiigdeh window iin ajil-----------------------------------------------------------
-
-const card = document.getElementById("cardHolder");
-console.log(card);
-
-const start = document.createElement("div");
-start.classList.add("start");
-const middle = document.createElement("div");
-middle.classList.add("middle");
-const last = document.createElement("div");
-last.classList.add("lastCSS");
-
-card.appendChild(start);
-card.appendChild(middle);
-card.appendChild(last);
-console.log(card);
-ToDoWindow.appendChild(card);
-
-const titleEl = document.createElement("p");
-const descriptionEl = document.createElement("p");
-
-const done = document.createElement("div");
-done.innerHTML = `<i class="fas fa-check" aria-hidden="true"></i>`;
-done.classList.add("done");
-start.appendChild(done);
-
-const deleteBtn = document.createElement("div");
-deleteBtn.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
-deleteBtn.classList.add("deleteBtn");
-last.appendChild(deleteBtn);
-
-const editBtn = document.createElement("div");
-editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
-editBtn.classList.add("editBtn");
-last.appendChild(editBtn);
 
 // shine tsonh garj ireh nuhtsul -----------------------------------------------------------
 
-titleEl === titleRef.value;
-descriptionEl === DesTitleRef.value;
-
 const btn = document.getElementById("closeButton");
 
-function addTusk() {
-  const mainWindow = document.getElementById("to-do");
-  const paragraph = document.createElement("h4");
-  const titlle = document.createElement("p");
-  const priorityref = document.createElement("option");
-  priorityref.textContent = priority.value;
-  paragraph.textContent = title.value;
-  titlle.textContent = descrip.value;
-  middle.appendChild(paragraph);
-  middle.appendChild(titlle);
-  middle.appendChild(priorityref);
-  title.value = "";
-  descrip.value = "";
-}
-btn.addEventListener("click", addTusk);
+btn.addEventListener("click", addTask);
+
+render();
+// hamggin suuld hiij baisan ajil
+//
