@@ -13,3 +13,4 @@ function closed() {
   addTaskButton.style.display = "none";
 }
 close.addEventListener("click", closed);
+//

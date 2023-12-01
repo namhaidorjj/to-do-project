@@ -29,13 +29,14 @@ let state = {
 };
 
 function addTask() {
+  let taskId = Math.random().toString(16).slice(2);
   const newTask = {
     title: titleRef.value,
     description: descriptionRef.value,
     status: statusRef.value,
     priority: priority.value,
+    id: taskId,
   };
-
   state.tasks.push(newTask);
   render();
 }
@@ -59,11 +60,22 @@ function render() {
 
     // Start
 
-    const done = document.createElement("div");
-    done.innerHTML = `<i class="fas fa-check" aria-hidden="true"></i>`;
-    done.classList.add("done");
-    start.appendChild(done);
+    const doner = document.createElement("div");
+    doner.innerHTML = `<i class="fas fa-check" aria-hidden="true"></i>`;
+    doner.classList.add("done");
 
+    doner.onclick = function (event) {
+      let taskIdDoneBtn = state.tasks[i].id;
+      state.tasks[i] = state.tasks.map((task) => {
+        if (task.id == taskIdDoneBtn) {
+          return { ...task, status: "done" };
+        } else {
+          return task;
+        }
+      });
+      render();
+    };
+    start.appendChild(doner);
     // Middle
 
     const paragraph = document.createElement("h4");
@@ -85,16 +97,28 @@ function render() {
     const deleteBtn = document.createElement("div");
     deleteBtn.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     deleteBtn.classList.add("deleteBtn");
+    deleteBtn.id = state.tasks[i].id;
+
+    deleteBtn.onclick = function (event) {
+      const deleteBtnId = state.tasks[i].id;
+      state.tasks[i] = state.tasks.filter(
+        (newTask) => newTask.id !== deleteBtnId
+      );
+      render();
+    };
     last.appendChild(deleteBtn);
 
     const editBtn = document.createElement("div");
     editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
     editBtn.classList.add("editBtn");
+
     last.appendChild(editBtn);
 
     card.appendChild(start);
     card.appendChild(middle);
     card.appendChild(last);
+
+    // SORT
 
     if (state.tasks[i].status === "To Do") {
       ToDoWindow.appendChild(card);
@@ -114,13 +138,13 @@ function render() {
   }
 
   //Priority erembleh
+
   const low = document.createElement("div");
 
   const medium = document.createElement("div");
 
   const high = document.createElement("div");
 }
-// shineer hiigdeh window iin ajil-----------------------------------------------------------
 
 // shine tsonh garj ireh nuhtsul -----------------------------------------------------------
 
@@ -129,5 +153,3 @@ const btn = document.getElementById("closeButton");
 btn.addEventListener("click", addTask);
 
 render();
-// hamggin suuld hiij baisan ajil
-//
